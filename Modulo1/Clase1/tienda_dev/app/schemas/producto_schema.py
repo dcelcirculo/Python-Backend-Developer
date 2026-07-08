@@ -8,7 +8,7 @@ class ProductoCreate(BaseModel):
     
     
 class ProductoUpdate(BaseModel):
-    nombre: str | None = None
+    #nombre: str | None = None
     precio: float | None = None
     stock: int | None = None
     categoria: str | None = None
