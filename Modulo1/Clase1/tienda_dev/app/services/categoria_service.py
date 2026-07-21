@@ -1,4 +1,6 @@
-categorias_db = []
+from app.exceptions import CategoriaNoEncontrada
+
+categorias = []
 contador_id = 1
 
 def crear_categoria(datos):
@@ -7,33 +9,34 @@ def crear_categoria(datos):
         "id": contador_id,
         "nombre": datos.nombre
     }
-    categorias_db.append(nueva)
+    categorias.append(nueva)
     contador_id += 1
     return nueva
 
 
 def listar_categorias():
-    return categorias_db
+    return categorias
 
 
-def obtener_categoria(categoria_id):
-    for c in categorias_db:
-        if c["id"] == categoria_id:
-            return c
-    return None
+def obtener_categoria(categoria_id: int):
+    for categoria in categorias:
+        if categoria["id"] == categoria_id:
+            return categoria
+    raise CategoriaNoEncontrada(categoria_id)
 
 
 def actualizar_categoria(categoria_id, datos):
-    for c in categorias_db:
+    for c in categorias:
         if c["id"] == categoria_id:
             c["nombre"] = datos.nombre
             return c
-    return None
+    # return None
+    return CategoriaNoEncontrada(categoria_id)
 
 
 def eliminar_categoria(categoria_id):
-    for c in categorias_db:
+    for c in categorias:
         if c["id"] == categoria_id:
-            categorias_db.remove(c)
+            categorias.remove(c)
             return True
     return False

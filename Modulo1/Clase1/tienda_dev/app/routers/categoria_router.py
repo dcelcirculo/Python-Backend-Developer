@@ -16,20 +16,25 @@ def listar():
     return {"total": len(resultado), "categorias": resultado}
 
 
-@router.get("/{categoria_id}")
+@router.get("/categorias/{categoria_id}")
 def obtener(categoria_id: int):
-    categoria = categoria_service.obtener_categoria(categoria_id)
-    if categoria is None:
-        raise HTTPException(status_code=404, detail="Categoria no encontrada")
-    return categoria
+    return categoria_service.obtener_categoria(categoria_id)
+
+# @router.get("/{categoria_id}")
+# def obtener(categoria_id: int):
+#     categoria = categoria_service.obtener_categoria(categoria_id)
+#     if categoria is None:
+#         raise HTTPException(status_code=404, detail="Categoria no encontrada")
+#     return categoria
 
 
 @router.put("/{categoria_id}")
 def actualizar(categoria_id: int, datos: CategoriaCreate):
-    categoria = categoria_service.actualizar_categoria(categoria_id, datos)
-    if categoria is None:
-        raise HTTPException(status_code=404, detail="Categoria no encontrada")
-    return {"mensaje": "Categoria actualizada", "categoria": categoria}
+    # categoria = categoria_service.actualizar_categoria(categoria_id, datos)
+    # if categoria is None:
+    #     raise HTTPException(status_code=404, detail="Categoria no encontrada")
+    # return {"mensaje": "Categoria actualizada", "categoria": categoria}
+    return categoria_service.actualizar_categoria(categoria_id, datos)
 
 
 @router.delete("/{categoria_id}")

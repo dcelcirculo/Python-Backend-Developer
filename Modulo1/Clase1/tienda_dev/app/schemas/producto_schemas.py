@@ -1,7 +1,0 @@
-from pydantic import BaseModel
-
-class ProductoCreate(BaseModel):
-    nombre: str
-    precio: float
-    stock: int
-    categoria: str   # ← línea nueva
